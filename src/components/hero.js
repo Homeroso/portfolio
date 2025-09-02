@@ -1,0 +1,55 @@
+'use client'
+
+import React from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { SplitText } from 'gsap/all';
+
+gsap.registerPlugin(SplitText);
+
+const Hero = () => {
+
+    useGSAP(() => {
+
+        const prev = new SplitText('#hero p', {type: 'chars, words'});
+        const title = new SplitText('#hero h1', {type: 'chars, words'});
+        const description = new SplitText('#hero-description', {type: 'words, lines'});
+
+        const textTL = gsap.timeline({ duration: 0.5, ease: 'power1.out' });
+
+        textTL.from(prev.words, {
+            opacity: 0,
+            y: 50,
+        }).from(title.words, {
+            opacity: 0,
+            y: 100,
+        }).from(description.lines, {
+            opacity: 0,
+            y: 50,
+            stagger: 0.2
+        });
+    });
+
+    return (
+        <section id='hero'>
+            <div className='flex flex-row w-60% min-h-dvh items-center content-center m-10 ml-20'>
+                <div className='text-left p-8'>
+                    <p>- Hello</p>
+                    <div className='flex flex-row gap-2'>
+                    <h1 className='text-foreground'>I'm</h1>
+                    <h1>Homeroso</h1>
+                </div>
+
+                <p id='hero-description' className='text-2xl'>
+                    Designer & Developer crafting engaging digital experiences <br />with a focus on creativity and innovation.
+                </p>
+                <button >
+                    View Projects
+                </button>
+            </div>
+        </div>
+    </section>
+    );
+};
+
+export default Hero;
