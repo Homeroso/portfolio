@@ -11,6 +11,12 @@
 
 }
 
+html,
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -33,14 +39,18 @@ body {
 @layer components {
 
   nav{
-    @apply fixed w-full z-50;
+    @apply fixed w-full z-50 border-b border-primary px-10;
 
     div{
       @apply flex flex-col md:flex-row md:justify-between items-center container mx-auto p-4;
     }
 
     ul{
-      @apply flex-center
+      @apply flex items-center gap-5
+    }
+
+    a{
+      @apply cursor-pointer
     }
   }
 
@@ -53,6 +63,10 @@ body {
 
     p{
       @apply text-foreground text-xl mb-4;
+    }
+
+    button{
+      @apply bg-primary text-background p-4 font-extrabold;
     }
   }
 }
