@@ -3,12 +3,12 @@
 import React from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { SplitText } from 'gsap/all';
+import { SplitText, ScrollTrigger } from 'gsap/all';
 
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const Hero = () => {
-
+    
     useGSAP(() => {
 
         const prev = new SplitText('#hero p', {type: 'chars, words'});
@@ -33,6 +33,7 @@ const Hero = () => {
             opacity: 0,
             y: 50,
         });
+9
     });
 
     return (
@@ -57,6 +58,7 @@ const Hero = () => {
                     <div className='absolute w-70 h-70 border border-slate-50 overflow-hidden ml-50 mt-[-80]' id='square'/>
                 </div>
             </div>
+            
         </section>
     );
 };
