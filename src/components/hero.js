@@ -38,15 +38,15 @@ const Hero = () => {
 
     return (
         <section id='hero'>
-            <div className='flex flex-row w-60% min-h-dvh items-center m-10 ml-20'>
-                <div className='text-left p-8'>
-                    <p>- Hello</p>
+            <div className='flex flex-row min-h-dvh items-center m-10 ml-20'>
+                <div className='text-left w-[60%] p-8'>
+                    <p className='text-3xl'>- Hello</p>
                     <div className='flex flex-row gap-2'>
-                        <h1 className='text-foreground'>I'm</h1>
+                        <h1 className='text-foreground'>I&apos;m</h1>
                         <h1>Homeroso</h1>
                     </div>
 
-                    <p id='hero-description' className='text-2xl'>
+                    <p id='hero-description' className='text-3xl'>
                         Designer & Developer crafting engaging digital experiences <br />with a focus on creativity and innovation.
                     </p>
                     <button>
