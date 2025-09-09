@@ -8,14 +8,17 @@ import Image from 'next/image';
 
 
 // List your image filenames here
-const imageFilenames = [
-    'Koishi.png',
-    'Marisa.png',
-    'Mokou.png',
-    'Youmu.jpg',
-    'Marzo.png',
-    'Teio.png',
-];
+
+const images = {
+    'Koishi Komeiji': 'Koishi.png',
+    'Marisa Kirisame': 'Marisa.png',
+    'Fujiwara no Mokou': 'Mokou.png',
+    'Youmu Konpaku': 'Youmu.jpg',
+    'March 7th': 'Marzo.png',
+    'Tokai Teio': 'Teio.png',
+}
+
+const imageFilenames = Object.entries(images); // ['/images/designs/Koishi.png', '/images/designs/Marisa.png', ...]
 
 const logos = [
     '2hu.webp',
@@ -65,6 +68,12 @@ function Projects() {
             { opacity: 1, scale: 1, duration: 0.5 }
         )
 
+        gsap.fromTo(
+            '.character',
+            { opacity: 0.5, scale: 0.9, duration: 0.5 },
+            { opacity: 1, scale: 1, duration: 0.5 }
+        )
+
         //This is a hook, it runs every time currentImg changes
     }, [startIndex, endIndex]);
 
@@ -86,7 +95,9 @@ function Projects() {
     }
 
     return (
-        <section id='projects'>
+        <section id='projects' className='relative'>
+            <div className='absolute w-1/3 top-10 left-0 h-5 bg-foreground' />
+            <div className='absolute w-1/3 top-70 right-0 h-5 bg-foreground' />
             <div className="flex flex-col m-10 text-center items-center">
                 <div className='w-1/2 mb-10 items-start text-center'>
                     <h2>Projects</h2>
@@ -110,13 +121,14 @@ function Projects() {
                             leftAnimation();
                         }}
                     />
-                    {visibleImages.map((filename, index) => (
-                        <div className='flex flex-row items-end' key={index}>
+                    {visibleImages.map(([name, src], index) => (
+                        <div className='static flex flex-row items-end' key={index}>
                             {index === mainIndex ? (
+                                <div className='static flex flex-col items-center'>
                                     <Image
                                         key={index}
-                                        src={`/images/designs/${filename}`}
-                                        alt={`Project ${index}`}  
+                                        src={`/images/designs/${src}`}
+                                        alt={`${name}`}  
                                         width={imageWidth}
                                         height={imageHeight}
                                         loading='lazy' 
@@ -125,13 +137,17 @@ function Projects() {
                                             project-image selected z-10 no-select mx-5' 
                                         }`}
                                     />
-                                
+                                    <p className='absolute character font-kodchasan text-4xl bottom-[-10%] left-[-120%] z-30'>
+                                        {name}
+                                    </p>
+                                </div>
+
                             ) : 
                             <div className= 'flex flex-row items-center w-full'>
                                 
                                 <Image
                                     key={index}
-                                    src={`/images/designs/${filename}`}
+                                    src={`/images/designs/${src}`}
                                     alt={`Project ${index}`}   
                                     loading='lazy'
                                     width={imageWidth * 0.85}
