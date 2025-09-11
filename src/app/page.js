@@ -1,3 +1,5 @@
+import CodingProjects from "@/components/coding";
+import Contact from "@/components/contact";
 import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
 import Projects from "@/components/projects";
@@ -9,6 +11,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Projects />
+      <CodingProjects />
+      <Contact />
     </>
   );
 }
